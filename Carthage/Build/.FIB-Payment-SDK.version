@@ -1,0 +1,20 @@
+{
+  "Mac" : [
+
+  ],
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+
+  ],
+  "commitish" : "5d50555f4b6a154bf2551ad04edeecb25bcde230",
+  "iOS" : [
+    {
+      "hash" : "1e14e4accd31f9b6b7e80e2422b4e4c62b3790d2f7b43043cf9ff7534d293d8e",
+      "name" : "FIB_Payment_SDK",
+      "linking" : "dynamic",
+      "swiftToolchainVersion" : "5.2.4 (swiftlang-1103.0.32.9 clang-1103.0.32.53)"
+    }
+  ]
+}

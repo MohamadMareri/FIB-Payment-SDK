@@ -10,7 +10,39 @@
 		8BAE8DA624FC44D900F68592 /* FIB_Payment_SDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BAE8DA424FC44D900F68592 /* FIB_Payment_SDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8BAE8DAD24FC459000F68592 /* PayWithFIBView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BAE8DAC24FC459000F68592 /* PayWithFIBView.swift */; };
 		8BAE8DAF24FC45D200F68592 /* FIBGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BAE8DAE24FC45D200F68592 /* FIBGradientView.swift */; };
+		8BAE8DD724FC490B00F68592 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BAE8DD624FC490B00F68592 /* AppDelegate.swift */; };
+		8BAE8DD924FC490B00F68592 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BAE8DD824FC490B00F68592 /* SceneDelegate.swift */; };
+		8BAE8DDB24FC490B00F68592 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BAE8DDA24FC490B00F68592 /* ViewController.swift */; };
+		8BAE8DDE24FC490B00F68592 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BAE8DDC24FC490B00F68592 /* Main.storyboard */; };
+		8BAE8DE024FC490E00F68592 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BAE8DDF24FC490E00F68592 /* Assets.xcassets */; };
+		8BAE8DE324FC490E00F68592 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BAE8DE124FC490E00F68592 /* LaunchScreen.storyboard */; };
+		8BAE8DE924FC4A4F00F68592 /* FIB_Payment_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BAE8DA124FC44D900F68592 /* FIB_Payment_SDK.framework */; };
+		8BAE8DEA24FC4A4F00F68592 /* FIB_Payment_SDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8BAE8DA124FC44D900F68592 /* FIB_Payment_SDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8BAE8DEB24FC4A4F00F68592 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8BAE8D9824FC44D800F68592 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8BAE8DA024FC44D900F68592;
+			remoteInfo = "FIB-Payment-SDK";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8BAE8DED24FC4A5000F68592 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8BAE8DEA24FC4A4F00F68592 /* FIB_Payment_SDK.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		8BAE8DA124FC44D900F68592 /* FIB_Payment_SDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FIB_Payment_SDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -18,6 +50,14 @@
 		8BAE8DA524FC44D900F68592 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8BAE8DAC24FC459000F68592 /* PayWithFIBView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayWithFIBView.swift; sourceTree = "<group>"; };
 		8BAE8DAE24FC45D200F68592 /* FIBGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIBGradientView.swift; sourceTree = "<group>"; };
+		8BAE8DD424FC490B00F68592 /* Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8BAE8DD624FC490B00F68592 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8BAE8DD824FC490B00F68592 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		8BAE8DDA24FC490B00F68592 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8BAE8DDD24FC490B00F68592 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8BAE8DDF24FC490E00F68592 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8BAE8DE224FC490E00F68592 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8BAE8DE424FC490E00F68592 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -28,6 +68,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8BAE8DD124FC490B00F68592 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8BAE8DE924FC4A4F00F68592 /* FIB_Payment_SDK.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -35,7 +83,9 @@
 			isa = PBXGroup;
 			children = (
 				8BAE8DA324FC44D900F68592 /* FIB-Payment-SDK */,
+				8BAE8DD524FC490B00F68592 /* Sample */,
 				8BAE8DA224FC44D900F68592 /* Products */,
+				8BAE8DE824FC4A4F00F68592 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -43,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				8BAE8DA124FC44D900F68592 /* FIB_Payment_SDK.framework */,
+				8BAE8DD424FC490B00F68592 /* Sample.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -56,6 +107,27 @@
 				8BAE8DAE24FC45D200F68592 /* FIBGradientView.swift */,
 			);
 			path = "FIB-Payment-SDK";
+			sourceTree = "<group>";
+		};
+		8BAE8DD524FC490B00F68592 /* Sample */ = {
+			isa = PBXGroup;
+			children = (
+				8BAE8DD624FC490B00F68592 /* AppDelegate.swift */,
+				8BAE8DD824FC490B00F68592 /* SceneDelegate.swift */,
+				8BAE8DDA24FC490B00F68592 /* ViewController.swift */,
+				8BAE8DDC24FC490B00F68592 /* Main.storyboard */,
+				8BAE8DDF24FC490E00F68592 /* Assets.xcassets */,
+				8BAE8DE124FC490E00F68592 /* LaunchScreen.storyboard */,
+				8BAE8DE424FC490E00F68592 /* Info.plist */,
+			);
+			path = Sample;
+			sourceTree = "<group>";
+		};
+		8BAE8DE824FC4A4F00F68592 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -90,18 +162,41 @@
 			productReference = 8BAE8DA124FC44D900F68592 /* FIB_Payment_SDK.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		8BAE8DD324FC490B00F68592 /* Sample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8BAE8DE524FC490E00F68592 /* Build configuration list for PBXNativeTarget "Sample" */;
+			buildPhases = (
+				8BAE8DD024FC490B00F68592 /* Sources */,
+				8BAE8DD124FC490B00F68592 /* Frameworks */,
+				8BAE8DD224FC490B00F68592 /* Resources */,
+				8BAE8DED24FC4A5000F68592 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8BAE8DEC24FC4A4F00F68592 /* PBXTargetDependency */,
+			);
+			name = Sample;
+			productName = Sample;
+			productReference = 8BAE8DD424FC490B00F68592 /* Sample.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		8BAE8D9824FC44D800F68592 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1160;
 				LastUpgradeCheck = 1160;
 				ORGANIZATIONNAME = "Mohamad Mareri";
 				TargetAttributes = {
 					8BAE8DA024FC44D900F68592 = {
 						CreatedOnToolsVersion = 11.6;
 						LastSwiftMigration = 1160;
+					};
+					8BAE8DD324FC490B00F68592 = {
+						CreatedOnToolsVersion = 11.6;
 					};
 				};
 			};
@@ -119,6 +214,7 @@
 			projectRoot = "";
 			targets = (
 				8BAE8DA024FC44D900F68592 /* FIB-Payment-SDK */,
+				8BAE8DD324FC490B00F68592 /* Sample */,
 			);
 		};
 /* End PBXProject section */
@@ -128,6 +224,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8BAE8DD224FC490B00F68592 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8BAE8DE324FC490E00F68592 /* LaunchScreen.storyboard in Resources */,
+				8BAE8DE024FC490E00F68592 /* Assets.xcassets in Resources */,
+				8BAE8DDE24FC490B00F68592 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,7 +249,44 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8BAE8DD024FC490B00F68592 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8BAE8DDB24FC490B00F68592 /* ViewController.swift in Sources */,
+				8BAE8DD724FC490B00F68592 /* AppDelegate.swift in Sources */,
+				8BAE8DD924FC490B00F68592 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8BAE8DEC24FC4A4F00F68592 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8BAE8DA024FC44D900F68592 /* FIB-Payment-SDK */;
+			targetProxy = 8BAE8DEB24FC4A4F00F68592 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8BAE8DDC24FC490B00F68592 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8BAE8DDD24FC490B00F68592 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		8BAE8DE124FC490E00F68592 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8BAE8DE224FC490E00F68592 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		8BAE8DA724FC44D900F68592 /* Debug */ = {
@@ -317,6 +460,42 @@
 			};
 			name = Release;
 		};
+		8BAE8DE624FC490E00F68592 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = J52UPA7GXP;
+				INFOPLIST_FILE = Sample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.Mareri.Sample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8BAE8DE724FC490E00F68592 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = J52UPA7GXP;
+				INFOPLIST_FILE = Sample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.Mareri.Sample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -334,6 +513,15 @@
 			buildConfigurations = (
 				8BAE8DAA24FC44D900F68592 /* Debug */,
 				8BAE8DAB24FC44D900F68592 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8BAE8DE524FC490E00F68592 /* Build configuration list for PBXNativeTarget "Sample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8BAE8DE624FC490E00F68592 /* Debug */,
+				8BAE8DE724FC490E00F68592 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
