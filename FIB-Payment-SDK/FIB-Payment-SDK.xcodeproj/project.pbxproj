@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B37B8AC24FCF4D9002D1C66 /* FIBAppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B37B8AB24FCF4D9002D1C66 /* FIBAppConfiguration.swift */; };
+		8B37B8AE24FCF8FD002D1C66 /* FIBConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B37B8AD24FCF8FD002D1C66 /* FIBConfiguration.plist */; };
 		8BAE8DA624FC44D900F68592 /* FIB_Payment_SDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BAE8DA424FC44D900F68592 /* FIB_Payment_SDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8BAE8DAD24FC459000F68592 /* PayWithFIBView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BAE8DAC24FC459000F68592 /* PayWithFIBView.swift */; };
 		8BAE8DAF24FC45D200F68592 /* FIBGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BAE8DAE24FC45D200F68592 /* FIBGradientView.swift */; };
@@ -46,6 +48,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8B37B8AB24FCF4D9002D1C66 /* FIBAppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIBAppConfiguration.swift; sourceTree = "<group>"; };
+		8B37B8AD24FCF8FD002D1C66 /* FIBConfiguration.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = FIBConfiguration.plist; sourceTree = "<group>"; };
 		8BAE8DA124FC44D900F68592 /* FIB_Payment_SDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FIB_Payment_SDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BAE8DA424FC44D900F68592 /* FIB_Payment_SDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FIB_Payment_SDK.h; sourceTree = "<group>"; };
 		8BAE8DA524FC44D900F68592 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -108,6 +112,7 @@
 				8BAE8DAC24FC459000F68592 /* PayWithFIBView.swift */,
 				8BAE8DAE24FC45D200F68592 /* FIBGradientView.swift */,
 				8BAE8E0124FCDD6200F68592 /* Assets.xcassets */,
+				8B37B8AB24FCF4D9002D1C66 /* FIBAppConfiguration.swift */,
 			);
 			path = "FIB-Payment-SDK";
 			sourceTree = "<group>";
@@ -122,6 +127,7 @@
 				8BAE8DDF24FC490E00F68592 /* Assets.xcassets */,
 				8BAE8DE124FC490E00F68592 /* LaunchScreen.storyboard */,
 				8BAE8DE424FC490E00F68592 /* Info.plist */,
+				8B37B8AD24FCF8FD002D1C66 /* FIBConfiguration.plist */,
 			);
 			path = Sample;
 			sourceTree = "<group>";
@@ -236,6 +242,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BAE8DE324FC490E00F68592 /* LaunchScreen.storyboard in Resources */,
+				8B37B8AE24FCF8FD002D1C66 /* FIBConfiguration.plist in Resources */,
 				8BAE8DE024FC490E00F68592 /* Assets.xcassets in Resources */,
 				8BAE8DDE24FC490B00F68592 /* Main.storyboard in Resources */,
 			);
@@ -250,6 +257,7 @@
 			files = (
 				8BAE8DAF24FC45D200F68592 /* FIBGradientView.swift in Sources */,
 				8BAE8DAD24FC459000F68592 /* PayWithFIBView.swift in Sources */,
+				8B37B8AC24FCF4D9002D1C66 /* FIBAppConfiguration.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

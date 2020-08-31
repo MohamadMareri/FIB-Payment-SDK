@@ -44,15 +44,16 @@ public final class PayWithFIBView: UIView {
     }
 
     @objc func backTapped(_ sender: Any) {
-        getToken { token in
+        let appConfiguration = FIBAppConfiguration()
+        getToken(appConfiguration: appConfiguration) { token in
             guard let token = token else {
                 return
             }
-            self.createPayment(token: token) { transactionScanCode in
+            self.createPayment(appConfiguration: appConfiguration, token: token) { transactionScanCode in
                 if let transactionScanCode = transactionScanCode {
-                    print("ID:\(transactionScanCode.paymentId)")
-                    print("Code:\(transactionScanCode.readableCode)")
-                    print("T:\(transactionScanCode.personalAppLink)")
+                    print("*** ID:\(transactionScanCode.paymentId)")
+                    print("*** Code:\(transactionScanCode.readableCode)")
+                    print("*** T:\(transactionScanCode.personalAppLink)")
                     guard let url = URL(string: transactionScanCode.personalAppLink),
                         let identifier = self.parseURL(url: url) else {
                         return
@@ -63,45 +64,45 @@ public final class PayWithFIBView: UIView {
                     }
                 }
             }
-             
         }
     }
     
-    private func getToken(completion: @escaping (Token?) -> Void) {
-        guard let url = URL(string: "https://keycloak.dev.azure.lawrence-spring.com/auth/realms/fib-online-shop/protocol/openid-connect/token") else {
-            completion(nil)
-            return
-        }
+    private func getToken(appConfiguration: FIBAppConfiguration, completion: @escaping (Token?) -> Void) {
         
-        let body = "grant_type=client_credentials&client_id=online-shop&client_secret=0d1fff1d-3c8f-4b4f-8b9d-f138c2a23d77"
-        var request = URLRequest(url: url)
+        let grantType = "grant_type=\(appConfiguration.grantType)"
+        let clientId = "client_id=\(appConfiguration.clientId)"
+        let clientSecret = "client_secret=\(appConfiguration.clientSecret)"
+        let body = "\(grantType)&\(clientId)&\(clientSecret)"
+        var request = URLRequest(url: appConfiguration.baseURLs.keycloakURL)
+
         request.httpMethod = "POST"
         request.httpBody = body.data(using: .utf8)
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {
                 completion(nil)
                 print(error?.localizedDescription ?? "No data")
                 return
             }
-            let toki = try? JSONDecoder().decode(Token.self, from: data)
-            completion(toki)
+            let token = try? JSONDecoder().decode(Token.self, from: data)
+            completion(token)
         }
 
         task.resume()
     }
 
-    private func createPayment(token: Token, completion: @escaping (TransactionScanCode?) -> Void) {
-        guard let url = URL(string: "https://fib-pay-gate.dev.azure.lawrence-spring.com/payments") else {
-            return
-        }
-        let parameters: [String: Any] = ["accountId": "7be40aed-23df-45bf-a538-92880c50993c",
+    private func createPayment(appConfiguration: FIBAppConfiguration,
+                               token: Token,
+                               completion: @escaping (TransactionScanCode?) -> Void) {
+        
+        let parameters: [String: Any] = ["accountId": appConfiguration.accountId,
                                       "description": "some test",
                                       "monetaryValue":["amount": 255,
                                                        "currency": "IQD"]]
         let jsonData = try? JSONSerialization.data(withJSONObject: parameters)
         
-        var request = URLRequest(url: url)
+        var request = URLRequest(url: appConfiguration.baseURLs.fibPayGateURL)
         request.httpMethod = "POST"
         request.httpBody = jsonData
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")

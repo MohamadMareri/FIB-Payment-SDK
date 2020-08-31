@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>accountId</key>
+	<string>7be40aed-23df-45bf-a538-92880c50993c</string>
+	<key>clientSecret</key>
+	<string>0d1fff1d-3c8f-4b4f-8b9d-f138c2a23d77</string>
+	<key>clientId</key>
+	<string>online-shop</string>
+	<key>grantType</key>
+	<string>client_credentials</string>
+	<key>baseURLs</key>
+	<dict>
+		<key>fibPayGate</key>
+		<string>https://fib-pay-gate.dev.azure.lawrence-spring.com/payments</string>
+		<key>keycloak</key>
+		<string>https://keycloak.dev.azure.lawrence-spring.com/auth/realms/fib-online-shop/protocol/openid-connect/token</string>
+	</dict>
+</dict>
+</plist>
