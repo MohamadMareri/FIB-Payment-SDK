@@ -28,7 +28,7 @@ public final class PayWithFIBView: UIView {
     let image: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(named: "fib-icon")
+        imageView.image = UIImage(named: "fib-icon", in: Bundle(for: PayWithFIBView.self), compatibleWith: nil)
         return imageView
     }()
 
