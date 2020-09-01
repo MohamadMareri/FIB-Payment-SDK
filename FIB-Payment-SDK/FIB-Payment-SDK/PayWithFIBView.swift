@@ -1,11 +1,3 @@
-//
-//  PayWithFIBView.swift
-//  FIB-Payment-SDK
-//
-//  Created by Mohamad Mareri on 30.08.20.
-//  Copyright © 2020 Mohamad Mareri. All rights reserved.
-//
-
 import Foundation
 import UIKit
 
@@ -21,7 +13,7 @@ public final class PayWithFIBView: UIView {
         button.tintColor = .white
         button.contentHorizontalAlignment = .left
         button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 0)
-        button.addTarget(self, action: #selector(backTapped(_:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(payTapped(_:)), for: .touchUpInside)
         return button
     }()
 
@@ -43,25 +35,33 @@ public final class PayWithFIBView: UIView {
         commonInit()
     }
 
-    @objc func backTapped(_ sender: Any) {
+    @objc func payTapped(_ sender: Any) {
         let appConfiguration = FIBAppConfiguration()
         getToken(appConfiguration: appConfiguration) { token in
             guard let token = token else {
                 return
             }
-            self.createPayment(appConfiguration: appConfiguration, token: token) { transactionScanCode in
-                if let transactionScanCode = transactionScanCode {
-                    print("*** ID:\(transactionScanCode.paymentId)")
-                    print("*** Code:\(transactionScanCode.readableCode)")
-                    print("*** T:\(transactionScanCode.personalAppLink)")
-                    guard let url = URL(string: transactionScanCode.personalAppLink),
-                        let identifier = self.parseURL(url: url) else {
-                        return
-                    }
-                    
-                    DispatchQueue.main.async {
-                        self.jump(identifier: identifier, paymentId: transactionScanCode.paymentId)
-                    }
+            self.createPayment(appConfiguration: appConfiguration, token: token) { transactionCode in
+                guard let transactionCode = transactionCode else {
+                    return
+                }
+                
+                print("*** ID:\(transactionCode.paymentId)")
+                print("*** Code:\(transactionCode.readableCode)")
+                print("*** P:\(transactionCode.personalAppLink)")
+                print("*** B:\(transactionCode.businessAppLink)")
+                DispatchQueue.main.async {
+                    self.koko(transactionCode: transactionCode)
+                }
+                
+                
+                guard let url = URL(string: transactionCode.personalAppLink),
+                    let identifier = self.parseURL(url: url) else {
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    //self.openFIBApp(identifier: identifier, paymentId: transactionCode.paymentId)
                 }
             }
         }
@@ -94,7 +94,7 @@ public final class PayWithFIBView: UIView {
 
     private func createPayment(appConfiguration: FIBAppConfiguration,
                                token: Token,
-                               completion: @escaping (TransactionScanCode?) -> Void) {
+                               completion: @escaping (TransactionCode?) -> Void) {
         
         let parameters: [String: Any] = ["accountId": appConfiguration.accountId,
                                       "description": "some test",
@@ -113,8 +113,8 @@ public final class PayWithFIBView: UIView {
                 print(error?.localizedDescription ?? "No data")
                 return
             }
-            let trans = try? JSONDecoder().decode(TransactionScanCode.self, from: data)
-            completion(trans)
+            let transactionCode = try? JSONDecoder().decode(TransactionCode.self, from: data)
+            completion(transactionCode)
         }
 
         task.resume()
@@ -124,6 +124,7 @@ public final class PayWithFIBView: UIView {
         guard let components = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
             return nil
         }
+        
         guard let queryItem = components.queryItems,
         let identifierUrl = queryItem.first(where: {$0.name == "link"})?.value else { return nil }
         
@@ -137,11 +138,56 @@ public final class PayWithFIBView: UIView {
         return identifier
     }
 
-    private func jump(identifier: String, paymentId: String) {
-        //if let url = URL(string: "https://personal.dev.first-iraqi-bank.co/\(code)") {
-        if let url = URL(string: "https://personal.dev.first-iraqi-bank.co/?Amount=300&Currency=IQS&Description=verwindung&Identifier=\(identifier)&PaymentId=\(paymentId)") {
+    private func koko(transactionCode: TransactionCode) {
+        guard let identifierUrl = URL(string: transactionCode.personalAppLink),
+            let identifier = self.parseURL(url: identifierUrl),
+            let personalAppUrl = URL(string: transactionCode.personalAppLink),
+            let businessAppUrl = URL(string: transactionCode.businessAppLink),
+            let personalAppScheme = personalAppUrl.scheme,
+            let businessAppScheme = businessAppUrl.scheme,
+            let personalAppHost = personalAppUrl.host,
+            let businessAppHost = businessAppUrl.host else {
+                print("Error while parsing FIB urls")
+                return
+        }
+
+        let personalAppLink = personalAppScheme+"://"+personalAppHost+"/"
+        let businessAppLink = businessAppScheme+"://"+businessAppHost+"/"
+        
+        var installedFIBApp: [FIBApp] = []
+        if UIApplication.shared.canOpenURL(URL(string: personalAppLink)) {
+            installedFIBApp.append(.personal)
+        }
+        if UIApplication.shared.canOpenURL(URL(string: businessAppLink)) {
+            installedFIBApp.append(.business)
+        }
+        if installedFIBApp.count == 2 {
+            showAlert(personalAppHost: personalAppLink,
+                      businessAppHost: businessAppLink,
+                      identifier: identifier,
+                      paymentId: transactionCode.paymentId)
+        }
+        
+    }
+
+    private func openFIBApp(appLink: String, identifier: String, paymentId: String) {
+        if let url = URL(string:prepareDeepLink(appLink: appLink, identifier: identifier, paymentId: paymentId)) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
+    }
+
+    private func prepareDeepLink(appLink: String, identifier: String, paymentId: String) -> String {
+        return appLink +
+        "?" +
+        "Amount=300" +
+        "&" +
+        "Currency=IQS" +
+        "&" +
+        "Description=verwindung" +
+        "&" +
+        "Identifier=\(identifier)" +
+        "&" +
+        "PaymentId=\(paymentId)"
     }
 
     private func commonInit() {
@@ -201,10 +247,40 @@ public struct Token: Decodable {
     }
 }
 
-public struct TransactionScanCode: Decodable {
+public struct TransactionCode: Decodable {
     public let paymentId: String
     public let readableCode: String
     public let personalAppLink: String
     public let businessAppLink: String
+}
+
+extension PayWithFIBView {
+    private enum FIBApp {
+        case personal
+        case business
+    }
+    
+    private func showAlert(personalAppHost: String, businessAppHost: String, identifier: String, paymentId: String) {
+        
+        let fibAppsAlert = UIAlertController(title: "Please choose the app to complete the transaction",
+                                             message: "",
+                                             preferredStyle: UIAlertController.Style.actionSheet)
+
+        let personalAppAction = UIAlertAction(title: "FIB Personal App", style: .default) { (action: UIAlertAction) in
+            self.openFIBApp(appLink: personalAppHost, identifier: identifier, paymentId: paymentId)
+        }
+        
+        let businessAppAction = UIAlertAction(title: "FIB Business App", style: .default) { (action: UIAlertAction) in
+            self.openFIBApp(appLink: businessAppHost, identifier: identifier, paymentId: paymentId)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+
+        fibAppsAlert.addAction(personalAppAction)
+        fibAppsAlert.addAction(businessAppAction)
+        fibAppsAlert.addAction(cancelAction)
+        DispatchQueue.main.async {
+            self.window?.rootViewController?.present(fibAppsAlert, animated: true, completion: nil)
+        }
+    }
 }
 
