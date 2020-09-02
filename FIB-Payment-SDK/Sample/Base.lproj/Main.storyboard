@@ -14,22 +14,7 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dc1-iV-J88" customClass="PayWithFIBView" customModule="FIB_Payment_SDK">
-                                <rect key="frame" x="24" y="421" width="366" height="64"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="3JY-6P-wey"/>
-                                </constraints>
-                            </view>
-                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="dc1-iV-J88" secondAttribute="trailing" constant="24" id="0ML-5w-V2q"/>
-                            <constraint firstItem="dc1-iV-J88" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="3m0-95-rKE"/>
-                            <constraint firstItem="dc1-iV-J88" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="B33-j0-5rk"/>
-                            <constraint firstItem="dc1-iV-J88" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="la5-ee-IbT"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>

@@ -4,6 +4,9 @@ import UIKit
 @IBDesignable
 public final class PayWithFIBView: UIView {
 
+    private var amount: String!
+    private var currency: String!
+    private var message: String!
     private let gradientBackgroundView = FIBGradientView()
 
     let button: UIButton = {
@@ -24,6 +27,13 @@ public final class PayWithFIBView: UIView {
         return imageView
     }()
 
+    public convenience init(amount: String, currency: String, message: String) {
+        self.init(frame: CGRect.zero)
+        self.amount = amount
+        self.currency = currency
+        self.message = message
+    }
+    
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -51,17 +61,7 @@ public final class PayWithFIBView: UIView {
                 print("*** P:\(transactionCode.personalAppLink)")
                 print("*** B:\(transactionCode.businessAppLink)")
                 DispatchQueue.main.async {
-                    self.koko(transactionCode: transactionCode)
-                }
-                
-                
-                guard let url = URL(string: transactionCode.personalAppLink),
-                    let identifier = self.parseURL(url: url) else {
-                    return
-                }
-                
-                DispatchQueue.main.async {
-                    //self.openFIBApp(identifier: identifier, paymentId: transactionCode.paymentId)
+                    self.prepareAppDialog(transactionCode: transactionCode)
                 }
             }
         }
@@ -138,7 +138,7 @@ public final class PayWithFIBView: UIView {
         return identifier
     }
 
-    private func koko(transactionCode: TransactionCode) {
+    private func prepareAppDialog(transactionCode: TransactionCode) {
         guard let identifierUrl = URL(string: transactionCode.personalAppLink),
             let identifier = self.parseURL(url: identifierUrl),
             let personalAppUrl = URL(string: transactionCode.personalAppLink),
@@ -177,13 +177,18 @@ public final class PayWithFIBView: UIView {
     }
 
     private func prepareDeepLink(appLink: String, identifier: String, paymentId: String) -> String {
+        guard let amount = amount,
+            let currency = currency,
+            let message = message else {
+                fatalError("FIB params missing")
+        }
         return appLink +
         "?" +
-        "Amount=300" +
+        "Amount=\(amount)" +
         "&" +
-        "Currency=IQS" +
+        "Currency=\(currency)" +
         "&" +
-        "Description=verwindung" +
+        "Description=\(message)" +
         "&" +
         "Identifier=\(identifier)" +
         "&" +
