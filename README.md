@@ -5,6 +5,7 @@ FIB Payment SDk is a payment library using First Iraqi Bank App written in Swift
 - [Features](#features)
 - [Requirements](#requirements)
 - [Installation](#installation)
+- [License](#license)
 
 ## Features
 - [x] Make payment transaction using FIB App.
@@ -51,3 +52,7 @@ Click the + under Input Files and add an entry for the framework:
 ```ogdl
 $(SRCROOT)/Carthage/Build/iOS/FIB-Payment-SDK.framework
 ```
+
+## License
+
+Alamofire is released under the MIT license. [See LICENSE](https://github.com/MohamadMareri/FIB-Payment-SDK/blob/master/LICENSE) for details.
