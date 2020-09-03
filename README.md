@@ -30,4 +30,3 @@ The `--platform iOS` option ensures that frameworks are only built for iOS. If y
 By default, Carthage will perform its checkouts and builds in a new directory named `Carthage` in the same location as your Cartfile. Open up this directory now by running `open Carthage`
 
 You should see a Finder window pop up that contains two directories: Build and Checkouts.
-![Alamofire: Elegant Networking in Swift](https://github.com/MohamadMareri/FIB-Payment-SDK/blob/master/carthage-directory.png)
