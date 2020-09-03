@@ -34,14 +34,14 @@ FIB Payment SDK is a payment library using First Iraqi Bank App written in Swift
 [Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks. 
 - To integrate FIBPaymentSDK into your Xcode project using Carthage, specify it in your `Cartfile`:
 
-```ogdl
-github "https://github.com/MohamadMareri/FIB-Payment-SDK" ~> 1.0
-```
+  ```ogdl
+  github "https://github.com/MohamadMareri/FIB-Payment-SDK" ~> 1.0
+  ```
 
 - Close your Cartfile in Xcode and head back to Terminal. Run the following command:
-```ogdl
-carthage update --platform iOS
-```
+  ```ogdl
+  carthage update --platform iOS
+  ```
 - This instructs Carthage to clone the Git repositories that are specified in the Cartfile, and then build each dependency into a framework. 
 
 -  The `--platform iOS` option ensures that frameworks are only built for iOS. If you don’t specify a platform, then by default Carthage will build frameworks for all platforms (often both Mac and iOS) supported by the library.
