@@ -16,7 +16,7 @@ FIB Payment SDK is a payment library using First Iraqi Bank App written in Swift
 
 ## Requirements
 
-- iOS 12.0+ 
+- iOS 13.0+ 
 - Xcode 11+
 - Swift 5.0+
 
