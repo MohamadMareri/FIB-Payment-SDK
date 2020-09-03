@@ -52,7 +52,7 @@ carthage update --platform iOS
 
 - Now you need to add Framework to Your Project, click on your project in the Project Navigator. Select the target, choose the General tab at the top, and scroll down to the Linked Frameworks and Libraries section at the bottom.
 
-> In the Carthage Finder window, navigate into Build\iOS. Drag both FIB-Payment-SDK.framework into the Linked Frameworks and Libraries section in Xcode.
+   > In the Carthage Finder window, navigate into Build\iOS. Drag both FIB-Payment-SDK.framework into the Linked Frameworks and Libraries section in Xcode.
 
 -  Next, switch over to Build Phases and add a new Run Script build phase by clicking the + in the top left of the editor. Add the following command:
 ```ogdl
