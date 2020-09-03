@@ -55,14 +55,14 @@ carthage update --platform iOS
    > In the Carthage Finder window, navigate into Build\iOS. Drag both FIB-Payment-SDK.framework into the Linked Frameworks and Libraries section in Xcode.
 
 -  Next, switch over to Build Phases and add a new Run Script build phase by clicking the + in the top left of the editor. Add the following command:
-```ogdl
-/usr/local/bin/carthage copy-frameworks
-```
+  ```ogdl
+  /usr/local/bin/carthage copy-frameworks
+  ```
 
 - Click the + under Input Files and add an entry for the framework:
-```ogdl
-$(SRCROOT)/Carthage/Build/iOS/FIB-Payment-SDK.framework
-```
+  ```ogdl
+  $(SRCROOT)/Carthage/Build/iOS/FIB-Payment-SDK.framework
+  ```
 
 ## License
 
