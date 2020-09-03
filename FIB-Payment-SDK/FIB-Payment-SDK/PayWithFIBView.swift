@@ -241,7 +241,7 @@ public final class PayWithFIBView: UIView {
     }
 }
 
-public struct Token: Decodable {
+private struct Token: Decodable {
 
     let accessToken: String
     let refreshToken: String
@@ -252,7 +252,7 @@ public struct Token: Decodable {
     }
 }
 
-public struct TransactionCode: Decodable {
+private struct TransactionCode: Decodable {
     public let paymentId: String
     public let readableCode: String
     public let personalAppLink: String
