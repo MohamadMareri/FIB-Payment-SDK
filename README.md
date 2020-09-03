@@ -30,3 +30,17 @@ The `--platform iOS` option ensures that frameworks are only built for iOS. If y
 By default, Carthage will perform its checkouts and builds in a new directory named `Carthage` in the same location as your Cartfile. Open up this directory now by running `open Carthage`
 
 You should see a Finder window pop up that contains two directories: Build and Checkouts.
+
+Now you need to add Framework to Your Project, click on your project in the Project Navigator. Select the target, choose the General tab at the top, and scroll down to the Linked Frameworks and Libraries section at the bottom.
+
+In the Carthage Finder window, navigate into Build\iOS. Drag both FIB-Payment-SDK.framework into the Linked Frameworks and Libraries section in Xcode.
+
+Next, switch over to Build Phases and add a new Run Script build phase by clicking the + in the top left of the editor. Add the following command:
+```ogdl
+/usr/local/bin/carthage copy-frameworks
+```
+
+Click the + under Input Files and add an entry for the framework:
+```ogdl
+$(SRCROOT)/Carthage/Build/iOS/FIB-Payment-SDK.framework
+```
