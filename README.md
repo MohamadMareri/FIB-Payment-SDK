@@ -3,11 +3,18 @@
 FIB Payment SDk is a payment library using First Iraqi Bank App written in Swift.
 
 - [Features](#features)
+- [Requirements](#requirements)
 - [Installation](#installation)
 
 ## Features
 - [x] Make payment transaction using FIB App.
 - [x] Support 2 FIB apps (Personal & Business).
+
+## Requirements
+
+- iOS 12.0+ 
+- Xcode 11+
+- Swift 5.0+
 
 ## Installation
 
