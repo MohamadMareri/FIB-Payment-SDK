@@ -1,4 +1,5 @@
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+![CocoaPods Compatible](https://img.shields.io/cocoapods/v/Alamofire.svg)
 
 FIB Payment SDk is a payment library using First Iraqi Bank App written in Swift.
 
