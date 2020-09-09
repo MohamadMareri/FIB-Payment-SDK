@@ -8,6 +8,7 @@ public final class PayWithFIBView: UIView {
     private var currency: String!
     private var message: String!
     private let gradientBackgroundView = FIBGradientView()
+    private let appConfiguration = FIBAppConfiguration()
 
     let button: UIButton = {
         let button = UIButton()
@@ -46,12 +47,11 @@ public final class PayWithFIBView: UIView {
     }
 
     @objc func payTapped(_ sender: Any) {
-        let appConfiguration = FIBAppConfiguration()
-        getToken(appConfiguration: appConfiguration) { token in
+        getToken { token in
             guard let token = token else {
                 return
             }
-            self.createPayment(appConfiguration: appConfiguration, token: token) { transactionCode in
+            self.createPayment(token: token) { transactionCode in
                 guard let transactionCode = transactionCode else {
                     return
                 }
@@ -67,7 +67,7 @@ public final class PayWithFIBView: UIView {
         }
     }
     
-    private func getToken(appConfiguration: FIBAppConfiguration, completion: @escaping (Token?) -> Void) {
+    private func getToken(completion: @escaping (Token?) -> Void) {
         
         let grantType = "grant_type=\(appConfiguration.grantType)"
         let clientId = "client_id=\(appConfiguration.clientId)"
@@ -92,8 +92,7 @@ public final class PayWithFIBView: UIView {
         task.resume()
     }
 
-    private func createPayment(appConfiguration: FIBAppConfiguration,
-                               token: Token,
+    private func createPayment(token: Token,
                                completion: @escaping (TransactionCode?) -> Void) {
         
         let parameters: [String: Any] = ["accountId": appConfiguration.accountId,
@@ -183,16 +182,7 @@ public final class PayWithFIBView: UIView {
                 fatalError("FIB params missing")
         }
         return appLink +
-        "?" +
-        "Amount=\(amount)" +
-        "&" +
-        "Currency=\(currency)" +
-        "&" +
-        "Description=\(message)" +
-        "&" +
-        "Identifier=\(identifier)" +
-        "&" +
-        "PaymentId=\(paymentId)"
+        "?Identifier=\(identifier)"
     }
 
     private func commonInit() {
