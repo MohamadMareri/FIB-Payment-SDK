@@ -4,11 +4,11 @@ import UIKit
 @IBDesignable
 public final class PayWithFIBView: UIView {
 
-    private var amount: String!
-    private var currency: String!
-    private var message: String!
+    var amount: Int!
+    var currency: String!
+    var message: String!
     private let gradientBackgroundView = FIBGradientView()
-    private let appConfiguration = FIBAppConfiguration()
+    let appConfiguration = FIBAppConfiguration()
 
     let button: UIButton = {
         let button = UIButton()
@@ -28,7 +28,7 @@ public final class PayWithFIBView: UIView {
         return imageView
     }()
 
-    public convenience init(amount: String, currency: String, message: String) {
+    public convenience init(amount: Int, currency: String, message: String) {
         self.init(frame: CGRect.zero)
         self.amount = amount
         self.currency = currency
@@ -65,58 +65,6 @@ public final class PayWithFIBView: UIView {
                 }
             }
         }
-    }
-    
-    private func getToken(completion: @escaping (Token?) -> Void) {
-        
-        let grantType = "grant_type=\(appConfiguration.grantType)"
-        let clientId = "client_id=\(appConfiguration.clientId)"
-        let clientSecret = "client_secret=\(appConfiguration.clientSecret)"
-        let body = "\(grantType)&\(clientId)&\(clientSecret)"
-        var request = URLRequest(url: appConfiguration.baseURLs.keycloakURL)
-
-        request.httpMethod = "POST"
-        request.httpBody = body.data(using: .utf8)
-        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {
-                completion(nil)
-                print(error?.localizedDescription ?? "No data")
-                return
-            }
-            let token = try? JSONDecoder().decode(Token.self, from: data)
-            completion(token)
-        }
-
-        task.resume()
-    }
-
-    private func createPayment(token: Token,
-                               completion: @escaping (TransactionCode?) -> Void) {
-        
-        let parameters: [String: Any] = ["accountId": appConfiguration.accountId,
-                                      "description": "some test",
-                                      "monetaryValue":["amount": 255,
-                                                       "currency": "IQD"]]
-        let jsonData = try? JSONSerialization.data(withJSONObject: parameters)
-        
-        var request = URLRequest(url: appConfiguration.baseURLs.fibPayGateURL)
-        request.httpMethod = "POST"
-        request.httpBody = jsonData
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue("Bearer \(token.accessToken)", forHTTPHeaderField: "Authorization")
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {
-                completion(nil)
-                print(error?.localizedDescription ?? "No data")
-                return
-            }
-            let transactionCode = try? JSONDecoder().decode(TransactionCode.self, from: data)
-            completion(transactionCode)
-        }
-
-        task.resume()
     }
 
     private func parseURL(url: URL) -> String? {
@@ -163,24 +111,18 @@ public final class PayWithFIBView: UIView {
         if installedFIBApp.count == 2 {
             showAlert(personalAppHost: personalAppLink,
                       businessAppHost: businessAppLink,
-                      identifier: identifier,
-                      paymentId: transactionCode.paymentId)
+                      identifier: identifier)
         }
         
     }
 
-    private func openFIBApp(appLink: String, identifier: String, paymentId: String) {
-        if let url = URL(string:prepareDeepLink(appLink: appLink, identifier: identifier, paymentId: paymentId)) {
+    private func openFIBApp(appLink: String, identifier: String) {
+        if let url = URL(string:prepareDeepLink(appLink: appLink, identifier: identifier)) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
 
-    private func prepareDeepLink(appLink: String, identifier: String, paymentId: String) -> String {
-        guard let amount = amount,
-            let currency = currency,
-            let message = message else {
-                fatalError("FIB params missing")
-        }
+    private func prepareDeepLink(appLink: String, identifier: String) -> String {
         return appLink +
         "?Identifier=\(identifier)"
     }
@@ -231,42 +173,24 @@ public final class PayWithFIBView: UIView {
     }
 }
 
-private struct Token: Decodable {
-
-    let accessToken: String
-    let refreshToken: String
-
-    enum CodingKeys: String, CodingKey {
-        case accessToken = "access_token"
-        case refreshToken = "refresh_token"
-    }
-}
-
-private struct TransactionCode: Decodable {
-    public let paymentId: String
-    public let readableCode: String
-    public let personalAppLink: String
-    public let businessAppLink: String
-}
-
 extension PayWithFIBView {
     private enum FIBApp {
         case personal
         case business
     }
     
-    private func showAlert(personalAppHost: String, businessAppHost: String, identifier: String, paymentId: String) {
+    private func showAlert(personalAppHost: String, businessAppHost: String, identifier: String) {
         
         let fibAppsAlert = UIAlertController(title: "Please choose the app to complete the transaction",
                                              message: "",
                                              preferredStyle: UIAlertController.Style.actionSheet)
 
         let personalAppAction = UIAlertAction(title: "FIB Personal App", style: .default) { (action: UIAlertAction) in
-            self.openFIBApp(appLink: personalAppHost, identifier: identifier, paymentId: paymentId)
+            self.openFIBApp(appLink: personalAppHost, identifier: identifier)
         }
         
         let businessAppAction = UIAlertAction(title: "FIB Business App", style: .default) { (action: UIAlertAction) in
-            self.openFIBApp(appLink: businessAppHost, identifier: identifier, paymentId: paymentId)
+            self.openFIBApp(appLink: businessAppHost, identifier: identifier)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
 

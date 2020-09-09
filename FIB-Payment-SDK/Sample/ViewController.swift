@@ -14,15 +14,15 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let aaa = PayWithFIBView(amount: "299", currency: "IQS", message: "message")
-        view.addSubview(aaa)
-        aaa.translatesAutoresizingMaskIntoConstraints = false
+        let fibView = PayWithFIBView(amount: 301, currency: "IQD", message: "I am SDK")
+        view.addSubview(fibView)
+        fibView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            aaa.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            aaa.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            aaa.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
-            aaa.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
-            aaa.heightAnchor.constraint(equalToConstant: 64)
+            fibView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            fibView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            fibView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
+            fibView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
+            fibView.heightAnchor.constraint(equalToConstant: 64)
         ])
     }
 
