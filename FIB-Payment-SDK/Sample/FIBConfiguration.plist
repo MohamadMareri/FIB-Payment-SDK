@@ -13,7 +13,7 @@
 	<key>baseURLs</key>
 	<dict>
 		<key>fibPayGate</key>
-		<string>https://fib-pay-gate.dev.azure.lawrence-spring.com/payments</string>
+		<string>https://fib.dev.azure.lawrence-spring.com/pay/payments</string>
 		<key>keycloak</key>
 		<string>https://keycloak.dev.azure.lawrence-spring.com/auth/realms/fib-online-shop/protocol/openid-connect/token</string>
 	</dict>
